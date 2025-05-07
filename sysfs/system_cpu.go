@@ -60,6 +60,7 @@ type SystemCPUCpufreqStats struct {
 	ScalingCurrentFrequency  *uint64
 	ScalingMinimumFrequency  *uint64
 	ScalingMaximumFrequency  *uint64
+	BaseFrequency            *uint64
 	AvailableGovernors       string
 	Driver                   string
 	Governor                 string
@@ -264,6 +265,7 @@ func parseCpufreqCpuinfo(cpuPath string) (*SystemCPUCpufreqStats, error) {
 		"scaling_cur_freq",
 		"scaling_max_freq",
 		"scaling_min_freq",
+		"base_frequency",
 	}
 	uintOut := make([]*uint64, len(uintFiles))
 
@@ -375,6 +377,7 @@ func parseCpufreqCpuinfo(cpuPath string) (*SystemCPUCpufreqStats, error) {
 		ScalingCurrentFrequency:          uintOut[4],
 		ScalingMaximumFrequency:          uintOut[5],
 		ScalingMinimumFrequency:          uintOut[6],
+		BaseFrequency:                    uintOut[7],
 		AvailableGovernors:               stringOut[0],
 		Driver:                           stringOut[1],
 		Governor:                         stringOut[2],
